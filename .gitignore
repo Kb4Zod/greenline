@@ -1,0 +1,61 @@
+# ============================================================
+# Greenline .gitignore — the privacy guardrail (decision 0001)
+# Public code, private data. Real financial data and secrets
+# must be IMPOSSIBLE to commit by accident.
+# ============================================================
+
+# --- Real financial data: never committed -------------------
+*.csv
+*.ofx
+*.qfx
+*.qbo
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Bank-export drop folders (any casing/layout)
+[Ss]eed[ _-][Dd]ata/
+data/
+imports/
+statements/
+
+# Handoff source material (not part of the public repo)
+files.zip
+
+# --- Secrets & local config ----------------------------------
+.env
+.env.*
+!.env.example
+*.local.json
+secrets*
+
+# --- EXPLICIT EXCEPTION: committed synthetic fixtures --------
+# The ONLY csv files allowed in the repo. Obviously-fake data,
+# generated for tests/demos (decision 0011). Keep this path
+# narrow; never widen it to a directory wildcard.
+!backend/tests/fixtures/synthetic_*.csv
+
+# --- Python ---------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# --- Node / frontend -----------------------------------------
+node_modules/
+frontend/dist/
+*.tsbuildinfo
+
+# --- OS / editor ----------------------------------------------
+Thumbs.db
+Desktop.ini
+.DS_Store
+.idea/
+.vscode/
