@@ -29,11 +29,21 @@ that makes that possible:
 | Milestone | State |
 |---|---|
 | PRD | ✅ Locked — [`Greenline_PRD_v1.2.md`](Greenline_PRD_v1.2.md) |
-| Spec (M1) | 🔨 In progress |
-| M1 — Cash Flow Forecast | 🔨 In progress |
+| Spec (M1) | ✅ [`SPEC-M1.md`](SPEC-M1.md) |
+| M1 — Cash Flow Forecast | ✅ Built — import, dedup, bill detection, 7/14/30d forecast, check-in UI |
 | M2 — Variable Cost Estimation | ⬜ Not started |
 | M3 — Budgeting & Planning | ⬜ Not started |
 | M4 — Goals & Savings Guidance | ⬜ Not started |
+
+## Quickstart
+
+```powershell
+.\scripts\dev.ps1   # starts the API (127.0.0.1:8537) + UI, opens localhost:5173
+```
+
+Then import a bank CSV on the Import tab, review the detected bills on the
+Bills tab, and the check-in view does the rest. Backend tests:
+`cd backend; .venv\Scripts\python -m pytest`.
 
 ## Stack
 
