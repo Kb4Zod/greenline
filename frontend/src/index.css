@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+/* Night-ledger palette. No CDN assets — local-first means offline fonts:
+   an editorial serif stack for words, a crisp mono stack for money. */
+@theme {
+  --color-ink: #0b1410;
+  --color-ink-raised: #101b16;
+  --color-ink-line: #1d2b24;
+  --color-paper: #ece7da;
+  --color-paper-dim: #9aa79e;
+  --color-paper-faint: #5c6a60;
+  --color-go: #4ade80;
+  --color-go-deep: #164a34;
+  --color-hold: #fbbf24;
+  --color-stop: #f87171;
+
+  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Charter, Georgia, serif;
+  --font-money: "Cascadia Code", "SF Mono", "JetBrains Mono", Consolas, ui-monospace, monospace;
+}
+
+html {
+  background: var(--color-ink);
+}
+
+body {
+  font-family: var(--font-display);
+  color: var(--color-paper);
+  /* faint atmospheric depth: two vignettes, no images */
+  background:
+    radial-gradient(1100px 500px at 70% -10%, rgba(74, 222, 128, 0.05), transparent 60%),
+    radial-gradient(900px 600px at -10% 110%, rgba(74, 222, 128, 0.03), transparent 55%),
+    var(--color-ink);
+  min-height: 100vh;
+}
+
+.money {
+  font-family: var(--font-money);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* The green line itself — the product's namesake, under the hero figure. */
+.greenline {
+  height: 2px;
+  background: linear-gradient(90deg, var(--line-color, var(--color-go)) 0%, transparent 100%);
+  box-shadow: 0 0 18px 1px var(--line-glow, rgba(74, 222, 128, 0.45));
+  border: none;
+}
+
+/* Staggered settle-in on load; respect reduced motion. */
+.rise {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rise {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
